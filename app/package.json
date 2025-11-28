@@ -1,0 +1,16 @@
+{
+  "name": "lapkeu-project",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "elysia": "^1.4.16"
+  },
+  "scripts": {
+    "dev" : "bun --watch run index.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "private": true,
+  "type": "module"
+}
