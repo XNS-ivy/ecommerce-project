@@ -1,36 +1,25 @@
-import { Elysia, t } from 'elysia'
-import cors from 'elysia'
+import { Elysia } from 'elysia'
+import { cors } from '@elysiajs/cors'
+import Query from 'classes/sql_query'
 
 const port = 3000
+const query = new Query()
 const app = new Elysia()
 
-app.get('/', () => "Halo, ini Elysia")
+await query.init()
 
-app.get('/user/:name', ({ params }) => {
-    console.log(params)
-    return `Nama kamu: ${params.name}`
-})
-
-app.post('/login', ({ body }: any) => {
-    return {
-        message: `Login sebagai ${body.username}`
+app.use(cors())
+app.post('/', () => 'Backend API RUNNING')
+app.get('/desc_table', async () => {
+    try {
+        return await query.executeQuery('DESC admin')
+    } catch (err: any) {
+        return {
+            error: true,
+            message: err.message
+        }
     }
 })
-
-app.post('/register', ({ body }: any) => {
-    return {
-        status: "success",
-        username: body.username
-    }
-})
-
-app.post('/math/add', ({ body }: any) => {
-    return {
-        hasil: body.x + body.y
-    }
-})
-
 app.listen(port)
-app.use(new cors())
 
-console.log(`🟢 Server running at http://localhost:${port}`)
+console.log(`Server API running at http://localhost:${port}`)
