@@ -1,90 +1,129 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer components {
-  .textHeader {
-    @apply text-color1 hover:text-color2 cursor-pointer;
-  }
-  .activeHover {
-    @apply bg-color2 cursor-pointer rounded p-2;
-  }
-  .boxKategori {
-    @apply flex h-[160px] w-[120px] items-center gap-4 rounded-lg bg-white;
-    border: 0.1px solid rgba(0, 0, 0, 0.1);
-  }
-  .tabsItem {
-    @apply text-12 w-28 border-b-2 border-transparent px-4 py-2 font-semibold text-gray-700 focus:outline-none;
-  }
-  .tabsItemActive {
-    @apply border-color1 text-color2;
-  }
-  .itemMenu {
-    @apply outline-color1 flex h-8 w-auto items-center justify-center gap-2 rounded-full p-5;
-    border: 0.1px solid rgba(0, 0, 0, 0.1);
-  }
-  .inputText {
-    @apply placeholder:text-12  text-12 h-10 w-[12.5rem] rounded p-2 outline-none;
-    border: 0.1px solid rgba(0, 0, 0, 0.1);
-  }
-  .inputTextSearch {
-    @apply h-8  w-full rounded outline-none;
-    border: 0.1px solid rgba(0, 0, 0, 0.1);
-  }
 
-  .border {
-    border: 0.1px solid rgba(0, 0, 0, 0.1);
-  }
-  .inputText:focus {
-    border: 0.1px solid rgba(13, 211, 18, 0.9); /* Warna border yang diinginkan saat input difokuskan */
-  }
-
-  .menuFixed {
-    @apply fixed -top-1 z-50 flex w-full flex-row items-center justify-between bg-white px-2 py-3;
-    animation: slideInFromBottom 0.5s ease-out;
-    border: 0.1px solid rgba(0, 0, 0, 0.1);
-  }
-  .menuDefault {
-    @apply flex w-full flex-row items-center justify-between px-2 py-3;
-  }
+/* Custom Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-@keyframes slideInFromBottom {
-  0% {
-    transform: translateY(-100%);
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color:  #f9fafb;
+}
+
+code {
+  background-color: #f3f4f6;
+  padding: 2px 6px;
+  border-radius:  3px;
+  font-family: 'Courier New', monospace;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
     opacity: 0;
+    transform: translateY(10px);
   }
-  100% {
-    transform: translateY(0);
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.custom-shadow {
-  position: relative;
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-  background-color: var(--NN0, #ffffff);
-  padding: 16px;
-  margin-bottom: 24px;
-  border-radius: 12px;
-}
-.slick-dots li button:before {
-  color: White;
-}
-.slick-dots li.slick-active button:before {
-  color: White !important;
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
 }
 
-.drop-shadow {
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+/* Utility Classes */
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.slick-slide {
-  padding: 0 4px;
+.line-clamp-1 {
+  -webkit-line-clamp: 1;
 }
 
-/* .slick-list {
-  margin: 0 2em;
-} */
+.line-clamp-2 {
+  -webkit-line-clamp: 2;
+}
 
-.slick-slide div {
+.line-clamp-3 {
+  -webkit-line-clamp: 3;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Form Elements */
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
+  @apply ring-2 ring-blue-500;
+}
+
+/* Loader Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Transitions */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-semibold;
+  }
+
+  .btn-danger {
+    @apply px-6 py-2 bg-red-600 text-white rounded-lg hover: bg-red-700 transition-colors font-semibold;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2. 5 py-0.5 rounded-full text-xs font-medium;
+  }
 }
