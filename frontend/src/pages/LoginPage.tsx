@@ -11,9 +11,12 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const ok = await login(username, password)
-    if (ok) await navigate('/')
-    else setError('Login gagal')
+    try {
+      await login(username, password)
+      navigate('/')
+    } catch {
+      setError('Login gagal')
+    }
   }
 
   return (
